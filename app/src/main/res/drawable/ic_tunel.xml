@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="128dp"
+    android:viewportWidth="160"
+    android:viewportHeight="128">
+    <path
+        android:name="Prostokąt"
+        android:pathData="m152 8v112h-144v-112zm-152 -8v128h160v-128z"
+        android:fillColor="#000" />
+    <path
+        android:name="Prostokąt 3"
+        android:pathData="m33 45v8h95v-8z"
+        android:fillColor="#000" />
+    <path
+        android:name="Prostokąt 4"
+        android:pathData="m33 71v8h95v-8z"
+        android:fillColor="#000" />
+</vector>

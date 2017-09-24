@@ -1,0 +1,70 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="128dp"
+    android:viewportWidth="160"
+    android:viewportHeight="128">
+    <path
+        android:fillColor="#000"
+        android:name="Prostokąt 11"
+        android:pathData="m72 0v8h-64v-8h64z" />
+    <path
+        android:name="Prostokąt 11"
+        android:pathData="m8 0v8h64v-8z"
+        android:fillColor="#000" />
+    <path
+        android:fillColor="#000"
+        android:name="Prostokąt 10"
+        android:pathData="m88 0h64v8h-64v-8z" />
+    <path
+        android:name="Prostokąt 10"
+        android:pathData="m149 3v2h-58v-2zm-61 -3v8h64v-8z"
+        android:fillColor="#000" />
+    <path
+        android:fillColor="#000"
+        android:name="Prostokąt 11 kopia 2"
+        android:pathData="m8 56h-8v-56h8v56z" />
+    <path
+        android:name="Prostokąt 11 kopia 2"
+        android:pathData="m0 0v56h8v-56z"
+        android:fillColor="#000" />
+    <path
+        android:fillColor="#000"
+        android:name="Prostokąt 10 kopia 2"
+        android:pathData="m8 72v56h-8v-56h8z" />
+    <path
+        android:name="Prostokąt 10 kopia 2"
+        android:pathData="m5 75v50h-2v-50zm-5 -3v56h8v-56z"
+        android:fillColor="#000" />
+    <path
+        android:fillColor="#000"
+        android:name="Prostokąt 11 kopia 3"
+        android:pathData="m160 56h-8v-56h8v56z" />
+    <path
+        android:name="Prostokąt 11 kopia 3"
+        android:pathData="m152 0v56h8v-56z"
+        android:fillColor="#000" />
+    <path
+        android:fillColor="#000"
+        android:name="Prostokąt 10 kopia 3"
+        android:pathData="m160 72v56h-8v-56h8z" />
+    <path
+        android:name="Prostokąt 10 kopia 3"
+        android:pathData="m157 75v50h-2v-50zm-5 -3v56h8v-56z"
+        android:fillColor="#000" />
+    <path
+        android:fillColor="#000"
+        android:name="Prostokąt 11 kopia"
+        android:pathData="m72 120v8h-64v-8h64z" />
+    <path
+        android:name="Prostokąt 11 kopia"
+        android:pathData="m8 120v8h64v-8z"
+        android:fillColor="#000" />
+    <path
+        android:fillColor="#000"
+        android:name="Prostokąt 10 kopia"
+        android:pathData="m88 120h64v8h-64v-8z" />
+    <path
+        android:name="Prostokąt 10 kopia"
+        android:pathData="m149 123v2h-58v-2zm-61 -3v8h64v-8z"
+        android:fillColor="#000" />
+</vector>

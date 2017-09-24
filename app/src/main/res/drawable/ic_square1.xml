@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="128dp"
+    android:viewportWidth="160"
+    android:viewportHeight="128">
+    <path
+        android:name="Prostokąt 12"
+        android:pathData="m152 8v112h-144v-112zm-152 -8v128h160v-128z"
+        android:fillColor="#000" />
+</vector>
