@@ -27,6 +27,9 @@ import java.util.ArrayList;
 public class Ground extends View {
     private ArrayList<Point> body; // snake points collection
     private Context context;
+
+    private boolean moved = true;
+
     private Direction currentDirection; // current direction in which snake moves
 
     private ArrayList<Line> lines; // map lines
@@ -104,7 +107,7 @@ public class Ground extends View {
 
         canvas.drawRect(apple.x * pix + spaceH, apple.y * pix + spaceV, apple.x * pix + spaceH + pix - 2, apple.y * pix + spaceV + pix - 2, paint);
         if (premium != null) {
-            canvas.drawCircle(premium.x * pix + spaceH + pix/2, premium.y * pix + spaceV + pix/2 ,13,paint);
+            canvas.drawCircle(premium.x * pix + spaceH + pix / 2, premium.y * pix + spaceV + pix / 2, 13, paint);
         }
 
 
@@ -127,16 +130,19 @@ public class Ground extends View {
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
-
-        if (x >= 0 && x <= (width * 0.25) && currentDirection != Direction.Right) {
-            currentDirection = Direction.Left;
-        } else if (x <= width && x >= (width * 0.75) && currentDirection != Direction.Left) {
-            currentDirection = Direction.Right;
-        } else if (x < (width * 0.75) && x > (width * 0.25) && y >= (height / 2) && y <= height && currentDirection != Direction.Up) {
-            currentDirection = Direction.Down;
-        } else if (x < (width * 0.75) && x > (width * 0.25) && y < (height / 2) && y >= 0 && currentDirection != Direction.Down) {
-            currentDirection = Direction.Up;
+        if (moved) {
+            if (x >= 0 && x <= (width * 0.25) && currentDirection != Direction.Right) {
+                currentDirection = Direction.Left;
+            } else if (x <= width && x >= (width * 0.75) && currentDirection != Direction.Left) {
+                currentDirection = Direction.Right;
+            } else if (x < (width * 0.75) && x > (width * 0.25) && y >= (height / 2) && y <= height && currentDirection != Direction.Up) {
+                currentDirection = Direction.Down;
+            } else if (x < (width * 0.75) && x > (width * 0.25) && y < (height / 2) && y >= 0 && currentDirection != Direction.Down) {
+                currentDirection = Direction.Up;
+            }
+            moved = false;
         }
+
 
         return super.onTouchEvent(event);
     }
@@ -146,10 +152,17 @@ public class Ground extends View {
 
     }
 
+    public void setMoved(boolean moved) {
+        this.moved = moved;
+    }
 
     public Direction getCurrentDirection() {
         return currentDirection;
     }
 
+
+    public void setCurrentDirection(Direction currentDirection) {
+        this.currentDirection = currentDirection;
+    }
 
 }

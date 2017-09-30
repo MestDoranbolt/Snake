@@ -7,5 +7,6 @@ package com.example.micha.snake.Enums;
 public enum States {
     Running,
     Apple,
-    Stop
+    Stop,
+    Premium
 }

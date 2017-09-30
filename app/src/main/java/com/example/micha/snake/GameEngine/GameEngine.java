@@ -18,6 +18,7 @@ public class GameEngine {
     private int height; // game height
     private int width; // game width
     private int length = 5; // beginning snake length
+    private int premiumPoints = 0;
     private ArrayList<Point> body; // snake points collection
 
     private Point apple = new Point();
@@ -48,22 +49,17 @@ public class GameEngine {
         }
     }
 
-    public Point getPremium(){
+    public Point getPremium() {
         premium = map.randPremium();
         return premium;
     }
 
-    public void restartSnakePosition(){
-        body.clear();
-        addSnake();
-    }
-
-    public void move(Direction currentDirection) {
+    public boolean move(Direction currentDirection) {
         Point firstPoint = body.get(0);
         Point newPoint = null;
         if (currentDirection.equals(Direction.Left)) {
             if (firstPoint.x <= 0) {
-                newPoint = new Point(width-1, firstPoint.y);
+                newPoint = new Point(width - 1, firstPoint.y);
             } else {
                 newPoint = new Point(firstPoint.x - 1, firstPoint.y);
             }
@@ -92,21 +88,29 @@ public class GameEngine {
 
         if (checkCollision(newPoint)) {
             currentState = States.Stop;
-            }else {
+            return false;
+        } else {
             body.remove(length - 1);
-            body.add(0,newPoint);
+            body.add(0, newPoint);
             if (checkApple(firstPoint.x, firstPoint.y)) {
                 length++;
                 body.add(1, apple);
                 randApple();
                 currentState = States.Apple;
-            }else if(premium !=null && checkPremium(premium.x, premium.y)){
+            } else if (premium != null && checkPremium(firstPoint.x, firstPoint.y)) {
+                premiumPoints++;
+                currentState = States.Premium;
             }
         }
+        return true;
     }
 
     public void setPremium(Point premium) {
         this.premium = premium;
+    }
+
+    public int getPremiumPoints() {
+        return premiumPoints;
     }
 
     public boolean checkCollision(Point newPoint) {
@@ -127,14 +131,14 @@ public class GameEngine {
     }
 
     public boolean checkPremium(int x, int y) {
-        if (apple.x == x && apple.y == y) {
+        if (premium.x == x && premium.y == y) {
             return true;
         }
         return false;
     }
 
     public void randApple() {
-        apple =map.randApple();
+        apple = map.randApple();
     }
 
     public Point getApple() {

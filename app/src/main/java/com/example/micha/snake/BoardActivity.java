@@ -2,16 +2,20 @@ package com.example.micha.snake;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.micha.snake.Enums.Direction;
 import com.example.micha.snake.Enums.States;
 import com.example.micha.snake.GameEngine.GameEngine;
 import com.example.micha.snake.Levels.Level;
@@ -32,8 +36,9 @@ public class BoardActivity extends AppCompatActivity {
     private ImageButton pause;
     private final int DELAY = 300;
     private final int INTERVAL = 50;
-    private final int BREAKE = 15;
+    private final int BREAK = 40;
     private int currentInterval = 0;
+    private int totalPremium = 0;
     private Level map;
     private RunTheGame gameRunner;
     private Context context = this;
@@ -43,18 +48,23 @@ public class BoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.board_view);
 
-        gameRunner = new RunTheGame();
+        SharedPreferences pref = getSharedPreferences("com.example,michal.snake.PREFERENCES", MODE_PRIVATE);
 
         getWindowManager().getDefaultDisplay().getMetrics(dimension);
-
-        map = getIntent().getExtras().getParcelable("MAP");
-
-        snake = (Ground) findViewById(R.id.SnakeGround);
-        game = new GameEngine(map);
 
         score = (TextView) findViewById(R.id.score);
         coins = (TextView) findViewById(R.id.coins);
         pause = (ImageButton) findViewById(R.id.pause);
+
+        map = getIntent().getExtras().getParcelable("MAP");
+
+        gameRunner = new RunTheGame();
+        snake = (Ground) findViewById(R.id.SnakeGround);
+        game = new GameEngine(map);
+
+        snake.setGameDimension(game.getWidth(), game.getHeight());
+
+        startTheGame();
 
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,26 +76,55 @@ public class BoardActivity extends AppCompatActivity {
         });
 
 
-        snake.setGameDimension(game.getWidth(), game.getHeight());
+
+        if (true) {
+            Dialog dialog = new TipDialog(context);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.show();
+            dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    handler.postDelayed(gameRunner, DELAY);
+                }
+            });
+
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("first_use", false);
+            editor.apply();
+
+        }else{
+            handler.postDelayed(gameRunner, DELAY);
+        }
+
+
+    }
+
+    private void startTheGame() {
+        game = new GameEngine(map);
+        snake.setCurrentDirection(Direction.Left);
 
         snake.setMap(map);
 
         snake.setSnakeData(game.getBody());
 
+        snake.setPremium(null);
+
         snake.setApple(game.getApple());
 
-        snake.invalidate();
-        handler.postDelayed(gameRunner, DELAY);
 
+
+        snake.invalidate();
     }
+
 
     @Override
     public void onBackPressed() {
         Dialog dialog = new PauseDialog(context);
+        handler.removeCallbacks(gameRunner);
         dialog.show();
     }
 
-    private class PauseDialog extends Dialog implements View.OnClickListener{
+    public class PauseDialog extends Dialog implements View.OnClickListener {
         private ImageButton restart;
         private ImageButton home;
         private ImageButton play;
@@ -103,22 +142,50 @@ public class BoardActivity extends AppCompatActivity {
             home.setOnClickListener(this);
         }
 
+
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.restart:
-                    game.restartSnakePosition();
-                    handler.postDelayed(gameRunner,DELAY);
+                    startTheGame();
+                    score.setText("score 0");
+                    coins.setText("coins 0");
+                    totalPremium += game.getPremiumPoints();
                     break;
                 case R.id.home:
+                    Intent returnIntent = new Intent();
+                    totalPremium += game.getPremiumPoints();
+                    returnIntent.putExtra("TOTAL_COINS", totalPremium);
+                    setResult(RESULT_OK,returnIntent);
                     BoardActivity.this.finish();
                     break;
                 case R.id.play:
-                    handler.postDelayed(gameRunner,DELAY);
+                    snake.invalidate();
+                    handler.postDelayed(gameRunner, DELAY);
                     break;
             }
+            this.dismiss();
         }
     }
+
+    private class TipDialog extends Dialog {
+
+        public TipDialog(@NonNull Context context) {
+            super(context, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
+            setContentView(R.layout.hint);
+
+            ImageButton close = (ImageButton) findViewById(R.id.closeTip);
+
+            close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dismiss();
+                }
+            });
+        }
+
+    }
+
 
     private class RunTheGame implements Runnable {
 
@@ -128,19 +195,25 @@ public class BoardActivity extends AppCompatActivity {
                 snake.setPremium(game.getPremium());
                 currentInterval = 0;
             }
-            if (currentInterval == BREAKE) {
+
+            if (currentInterval == BREAK) {
                 snake.setPremium(null);
                 game.setPremium(null);
             }
-            game.move(snake.getCurrentDirection());
+
+            snake.setMoved(game.move(snake.getCurrentDirection()));
             snake.setSnakeData(game.getBody());
+
             if (game.getCurrentState() == States.Apple) {
                 snake.setApple(game.getApple());
                 score.setText(getString(R.string.score) + " " + (game.getLength() - 5));
+            } else if (game.getCurrentState() == States.Premium) {
+                snake.setPremium(null);
+                coins.setText("coins " + " " + game.getPremiumPoints());
             }
             snake.invalidate();
 
-            if (game.getCurrentState() == States.Running || game.getCurrentState() == States.Apple) {
+            if (game.getCurrentState() == States.Running || game.getCurrentState() == States.Apple || game.getCurrentState() == States.Premium) {
                 currentInterval++;
                 handler.postDelayed(this, DELAY);
             } else if (game.getCurrentState() == States.Stop) {
