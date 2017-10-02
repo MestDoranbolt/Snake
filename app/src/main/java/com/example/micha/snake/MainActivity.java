@@ -101,3 +101,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
  // to do list
 // repair plus map
+// repair layout
+// block levels
+// change premium delay

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -64,7 +65,6 @@ public class BoardActivity extends AppCompatActivity {
 
         snake.setGameDimension(game.getWidth(), game.getHeight());
 
-        startTheGame();
 
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,11 +76,11 @@ public class BoardActivity extends AppCompatActivity {
         });
 
 
-
         if (true) {
             Dialog dialog = new TipDialog(context);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.getWindow().setBackgroundDrawableResource(R.color.semi_green);
             dialog.show();
+            startTheGame(false);
             dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
@@ -92,15 +92,16 @@ public class BoardActivity extends AppCompatActivity {
             editor.putBoolean("first_use", false);
             editor.apply();
 
-        }else{
-            handler.postDelayed(gameRunner, DELAY);
+        } else {
+            startTheGame(true);
         }
 
 
     }
 
-    private void startTheGame() {
+    private void startTheGame(boolean run) {
         game = new GameEngine(map);
+
         snake.setCurrentDirection(Direction.Left);
 
         snake.setMap(map);
@@ -111,7 +112,9 @@ public class BoardActivity extends AppCompatActivity {
 
         snake.setApple(game.getApple());
 
-
+        if (run) {
+            handler.postDelayed(gameRunner, DELAY);
+        }
 
         snake.invalidate();
     }
@@ -147,7 +150,7 @@ public class BoardActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.restart:
-                    startTheGame();
+                    startTheGame(true);
                     score.setText("score 0");
                     coins.setText("coins 0");
                     totalPremium += game.getPremiumPoints();
@@ -156,7 +159,7 @@ public class BoardActivity extends AppCompatActivity {
                     Intent returnIntent = new Intent();
                     totalPremium += game.getPremiumPoints();
                     returnIntent.putExtra("TOTAL_COINS", totalPremium);
-                    setResult(RESULT_OK,returnIntent);
+                    setResult(RESULT_OK, returnIntent);
                     BoardActivity.this.finish();
                     break;
                 case R.id.play:

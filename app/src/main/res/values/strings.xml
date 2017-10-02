@@ -7,4 +7,7 @@
     <string name="up">up</string>
     <string name="down">down</string>
     <string name="description">How to control the snake</string>
+    <string name="coins_5">Unlock for 5 coins</string>
+    <string name="coins_10">Unlock for 10 coins</string>
+    <string name="coins_15">Unlock for 15 coins</string>
 </resources>
