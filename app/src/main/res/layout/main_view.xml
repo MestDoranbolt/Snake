@@ -21,8 +21,8 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         android:layout_marginTop="16dp"
         app:layout_constraintRight_toLeftOf="@+id/guideline"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
@@ -39,32 +39,32 @@
         app:srcCompat="@drawable/ic_square2"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
         android:layout_marginTop="16dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
-        android:id="@+id/plus"
+        android:id="@+id/tunnel_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/ic_plus"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toLeftOf="@+id/guideline"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline7"
-        android:layout_marginTop="16dp"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_tunel1" />
 
     <ImageButton
         android:id="@+id/tunel"
@@ -75,9 +75,9 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/ic_tunel"
         android:layout_marginStart="16dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp"
@@ -100,14 +100,17 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.5" />
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.5"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="296dp" />
 
     <TextView
         android:id="@+id/coins"
@@ -126,13 +129,58 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline3"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.25"
+        tools:layout_editor_absoluteY="90dp"
+        tools:layout_editor_absoluteX="0dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline7"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.62" />
+        app:layout_constraintGuide_percent="0.62"
+        tools:layout_editor_absoluteY="223dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/lvl3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:rotation="-10"
+        android:text="@string/coins_10"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="@+id/tunnel_1"
+        android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tunnel_1"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/tunnel_1"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/tunnel_1" />
+
+    <Button
+        android:id="@+id/lvl2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:rotation="-10"
+        android:text="@string/coins_5"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/square2"
+        app:layout_constraintLeft_toLeftOf="@+id/square2"
+        app:layout_constraintRight_toRightOf="@+id/square2"
+        app:layout_constraintTop_toTopOf="@+id/square2" />
+
+    <Button
+        android:id="@+id/lvl4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:rotation="-10"
+        android:text="@string/coins_15"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tunel"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/tunel"
+        app:layout_constraintRight_toRightOf="@+id/tunel"
+        app:layout_constraintTop_toTopOf="@+id/tunel" />
 
 </android.support.constraint.ConstraintLayout>

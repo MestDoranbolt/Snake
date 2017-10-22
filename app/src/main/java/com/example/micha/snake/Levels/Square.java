@@ -4,7 +4,6 @@ import android.graphics.Point;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.micha.snake.Enums.States;
 import com.example.micha.snake.OwnClass.Line;
 
 import java.util.ArrayList;
@@ -21,7 +20,9 @@ public class Square extends Level {
 
     @Override
     public boolean checkCollision(int x, int y) {
-        if (x <= 0 || y <= 0 || x >= width - 1 || y >= height - 1) {
+        boolean horizontalBorders = (x == 0 || x == width - 1);
+        boolean verticalBorders = (y == 0 || y == height - 1);
+        if (horizontalBorders || verticalBorders) {
             return true;
         }
         return false;
@@ -30,10 +31,14 @@ public class Square extends Level {
     @Override
     public ArrayList<Line> generateLines(int spaceH, int spaceV, int pix, int screenWidth, int screenHeight) {
         lines.clear();
-        lines.add(new Line(spaceH, spaceV + (pix / 2), screenWidth - spaceH - 1, spaceV + (pix / 2)));
-        lines.add(new Line(spaceH, screenHeight - spaceV - (pix / 2), screenWidth - spaceH - 1, screenHeight - spaceV - (pix / 2)));
-        lines.add(new Line(spaceH + (pix / 2), spaceV, spaceH + (pix / 2), screenHeight - spaceV));
-        lines.add(new Line(screenWidth - spaceH - (pix / 2) - 1, spaceV, screenWidth - spaceH - (pix / 2) - 1, screenHeight - spaceV));
+        //up
+        lines.add(new Line(spaceH + 2, spaceV + (pix / 2), screenWidth - spaceH - 3, spaceV + (pix / 2)));
+        //bottom
+        lines.add(new Line(spaceH + 2, screenHeight - spaceV - (pix / 2), screenWidth - spaceH - 3, screenHeight - spaceV - (pix / 2)));
+        //left
+        lines.add(new Line(spaceH + (pix / 2), spaceV + 2, spaceH + (pix / 2), screenHeight - spaceV - 2));
+        // right
+        lines.add(new Line(screenWidth - spaceH - (pix / 2) - 1, spaceV +2, screenWidth - spaceH - (pix / 2) - 1, screenHeight - spaceV -2));
         return lines;
     }
 

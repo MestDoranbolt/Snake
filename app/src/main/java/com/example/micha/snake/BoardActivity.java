@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -96,7 +94,6 @@ public class BoardActivity extends AppCompatActivity {
             startTheGame(true);
         }
 
-
     }
 
     private void startTheGame(boolean run) {
@@ -126,6 +123,14 @@ public class BoardActivity extends AppCompatActivity {
         handler.removeCallbacks(gameRunner);
         dialog.show();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        onBackPressed();
+    }
+
+    // private classes
 
     public class PauseDialog extends Dialog implements View.OnClickListener {
         private ImageButton restart;
@@ -188,7 +193,6 @@ public class BoardActivity extends AppCompatActivity {
         }
 
     }
-
 
     private class RunTheGame implements Runnable {
 

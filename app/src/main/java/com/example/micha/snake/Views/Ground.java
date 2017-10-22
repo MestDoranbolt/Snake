@@ -2,14 +2,12 @@ package com.example.micha.snake.Views;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -102,7 +100,6 @@ public class Ground extends View {
         drawMap(canvas);
         for (Point p : body) {
             canvas.drawRect(p.x * pix + spaceH, p.y * pix + spaceV, p.x * pix + spaceH + pix - 2, p.y * pix + spaceV + pix - 2, paint);
-            Log.d("Paint stroke", String.valueOf(paint.getStrokeWidth()));
         }
 
         canvas.drawRect(apple.x * pix + spaceH, apple.y * pix + spaceV, apple.x * pix + spaceH + pix - 2, apple.y * pix + spaceV + pix - 2, paint);
@@ -114,7 +111,7 @@ public class Ground extends View {
     }
 
     private void drawMap(Canvas canvas) {
-        paint.setStrokeWidth(pix);
+        paint.setStrokeWidth(pix -2);
         paint.setColor(Color.BLACK);
 
         lines = map.generateLines(spaceH, spaceV, pix, width, height);
@@ -159,7 +156,6 @@ public class Ground extends View {
     public Direction getCurrentDirection() {
         return currentDirection;
     }
-
 
     public void setCurrentDirection(Direction currentDirection) {
         this.currentDirection = currentDirection;

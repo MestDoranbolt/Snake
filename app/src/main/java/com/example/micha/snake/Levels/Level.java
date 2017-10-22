@@ -3,12 +3,10 @@ package com.example.micha.snake.Levels;
 import android.graphics.Point;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.AtomicFile;
 
 import com.example.micha.snake.OwnClass.Line;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Michał on 21.09.2017.

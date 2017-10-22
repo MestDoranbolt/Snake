@@ -1,14 +1,9 @@
 package com.example.micha.snake.GameEngine;
-
 import android.graphics.Point;
-import android.util.Log;
-
 import com.example.micha.snake.Enums.Direction;
 import com.example.micha.snake.Enums.States;
 import com.example.micha.snake.Levels.Level;
-
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Michał on 15.08.2017.
@@ -43,7 +38,7 @@ public class GameEngine {
     }
 
     private void addSnake() {
-        body.add(new Point(width / 2 + 5, height / 2));
+        body.add(new Point(width / 2 -1, height / 2));
         for (int i = 0; i < 4; i++) {
             body.add(new Point(body.get(i).x + 1, body.get(i).y));
         }

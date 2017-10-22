@@ -19,7 +19,9 @@ public class Tunnel extends Level {
 
     @Override
     public boolean checkCollision(int x, int y) {
-        if ((x <= 0 || y <= 0 || x >= width - 1 || y >= height - 1) || ((x > 7 && x <= 27) && (y == 9 || y == 16))) {
+        boolean borders = (x == 0 || y == 0 || x == width - 1 || y == height - 1);
+        boolean tunnel = (x > 7 && x <= 27) && (y == 9 || y == 16);
+        if (borders || tunnel) {
             return true;
         }
         return false;
@@ -27,17 +29,21 @@ public class Tunnel extends Level {
 
     @Override
     public ArrayList<Line> generateLines(int spaceH, int spaceV, int pix, int screenWidth, int screenHeight) {
-        int x1 = 7;
-        int y1 = 8;
-        int x2 = 27;
+//        x1 = 7;
+//        y1 = 8;
+//        x2 = 27;
 
         lines.clear();
+        //up
+        lines.add(new Line(spaceH + 2, spaceV + (pix / 2), screenWidth - spaceH - 3, spaceV + (pix / 2)));
+        //bottom
+        lines.add(new Line(spaceH + 2, screenHeight - spaceV - (pix / 2), screenWidth - spaceH - 3, screenHeight - spaceV - (pix / 2)));
+        //left
+        lines.add(new Line(spaceH + (pix / 2), spaceV + 2, spaceH + (pix / 2), screenHeight - spaceV - 2));
+        // right
+        lines.add(new Line(screenWidth - spaceH - (pix / 2) - 1, spaceV +2, screenWidth - spaceH - (pix / 2) - 1, screenHeight - spaceV -2));;
 
-        lines.add(new Line(spaceH, spaceV + (pix / 2), screenWidth - spaceH - 1, spaceV + (pix / 2)));
-        lines.add(new Line(spaceH, screenHeight - spaceV - (pix / 2), screenWidth - spaceH - 1, screenHeight - spaceV - (pix / 2)));
-        lines.add(new Line(spaceH + (pix / 2), spaceV, spaceH + (pix / 2), screenHeight - spaceV));
-        lines.add(new Line(screenWidth - spaceH - (pix / 2) - 1, spaceV, screenWidth - spaceH - (pix / 2) - 1, screenHeight - spaceV));
-
+        //tunnel
         lines.add(new Line(spaceH + pix + 7 * pix, spaceV + (pix / 2) + pix + 8 * pix, spaceH + pix + 27 * pix, spaceV + (pix / 2) + pix + 8 * pix));
         lines.add(new Line(spaceH + pix + 7 * pix, spaceV + (pix / 2) + pix + (8 + 7) * pix, spaceH + pix + 27 * pix, spaceV + (pix / 2) + pix + (8 + 7) * pix));
         return lines;
@@ -61,7 +67,7 @@ public class Tunnel extends Level {
     }
 
     //parcelling
-    protected Tunnel (Parcel in){
+    protected Tunnel(Parcel in) {
         super(in);
     }
 
