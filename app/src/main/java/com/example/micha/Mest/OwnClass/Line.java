@@ -1,4 +1,4 @@
-package com.example.micha.snake.OwnClass;
+package com.example.micha.Mest.OwnClass;
 
 import android.os.Parcel;
 import android.os.Parcelable;

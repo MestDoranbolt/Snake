@@ -1,4 +1,4 @@
-package com.example.micha.snake.Views;
+package com.example.micha.Mest.Views;
 
 
 import android.content.Context;
@@ -11,9 +11,9 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.micha.snake.Enums.Direction;
-import com.example.micha.snake.Levels.Level;
-import com.example.micha.snake.OwnClass.Line;
+import com.example.micha.Mest.Enums.Direction;
+import com.example.micha.Mest.Levels.Level;
+import com.example.micha.Mest.OwnClass.Line;
 
 import java.util.ArrayList;
 
@@ -50,6 +50,7 @@ public class Ground extends View {
     private Level map; // Map
 
     private Point premium; // Premium point
+
 
 
     public Ground(Context context, @Nullable AttributeSet attrs) {
@@ -96,12 +97,10 @@ public class Ground extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         drawMap(canvas);
         for (Point p : body) {
             canvas.drawRect(p.x * pix + spaceH, p.y * pix + spaceV, p.x * pix + spaceH + pix - 2, p.y * pix + spaceV + pix - 2, paint);
         }
-
         canvas.drawRect(apple.x * pix + spaceH, apple.y * pix + spaceV, apple.x * pix + spaceH + pix - 2, apple.y * pix + spaceV + pix - 2, paint);
         if (premium != null) {
             canvas.drawCircle(premium.x * pix + spaceH + pix / 2, premium.y * pix + spaceV + pix / 2, 13, paint);

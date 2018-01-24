@@ -1,9 +1,8 @@
-package com.example.micha.snake;
+package com.example.micha.Mest;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.Preference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +10,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.micha.snake.Levels.Entry;
-import com.example.micha.snake.Levels.Square;
-import com.example.micha.snake.Levels.Tunnel;
-import com.example.micha.snake.Levels.Tunnel_1;
+import com.example.micha.Mest.Levels.Entry;
+import com.example.micha.Mest.Levels.Square;
+import com.example.micha.Mest.Levels.Tunnel;
+import com.example.micha.Mest.Levels.Tunnel_1;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -173,11 +172,3 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 }
-
-//// TODO: 03.10.2017
-// change premium delay
-// delete logs
-
-//// TODO: 05.10.2017
-// change premium delay
-// change button to unlock graphic

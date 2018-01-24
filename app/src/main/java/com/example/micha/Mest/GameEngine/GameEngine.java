@@ -1,8 +1,8 @@
-package com.example.micha.snake.GameEngine;
+package com.example.micha.Mest.GameEngine;
 import android.graphics.Point;
-import com.example.micha.snake.Enums.Direction;
-import com.example.micha.snake.Enums.States;
-import com.example.micha.snake.Levels.Level;
+import com.example.micha.Mest.Enums.Direction;
+import com.example.micha.Mest.Enums.States;
+import com.example.micha.Mest.Levels.Level;
 import java.util.ArrayList;
 
 /**

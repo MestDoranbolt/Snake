@@ -1,4 +1,4 @@
-package com.example.micha.snake;
+package com.example.micha.Mest;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.micha.snake.Enums;
+package com.example.micha.Mest.Enums;
 
 /**
  * Created by Michał on 15.08.2017.

@@ -1,10 +1,10 @@
-package com.example.micha.snake.Levels;
+package com.example.micha.Mest.Levels;
 
 import android.graphics.Point;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.micha.snake.OwnClass.Line;
+import com.example.micha.Mest.OwnClass.Line;
 
 import java.util.ArrayList;
 

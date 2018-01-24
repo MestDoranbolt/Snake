@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
     android:orientation="horizontal"
-    tools:context="com.example.micha.snake.MainActivity">
+    tools:context="com.example.micha.Mest.MainActivity">
 
     <TextView
         android:id="@+id/score"
@@ -46,7 +45,7 @@
 
     <view
         android:id="@+id/SnakeGround"
-        class="com.example.micha.snake.Views.Ground"
+        class="com.example.micha.Mest.Views.Ground"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,4 +1,4 @@
-package com.example.micha.snake;
+package com.example.micha.Mest;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,11 +14,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.micha.snake.Enums.Direction;
-import com.example.micha.snake.Enums.States;
-import com.example.micha.snake.GameEngine.GameEngine;
-import com.example.micha.snake.Levels.Level;
-import com.example.micha.snake.Views.Ground;
+import com.example.micha.Mest.Enums.Direction;
+import com.example.micha.Mest.Enums.States;
+import com.example.micha.Mest.GameEngine.GameEngine;
+import com.example.micha.Mest.Levels.Level;
+import com.example.micha.Mest.Views.Ground;
 
 /**
  * Created by Michał on 11.09.2017.
